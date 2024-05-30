@@ -76,6 +76,7 @@ public class SecurityConfig {
         corsConfiguration.addAllowedOriginPattern("*");
         corsConfiguration.addAllowedHeader("Authorization");
         corsConfiguration.addAllowedHeader("Content-Type");
+        corsConfiguration.addAllowedHeader("*"); // Allow all headers
         corsConfiguration.addAllowedHeader("Header");
         corsConfiguration.addAllowedMethod("POST");
         corsConfiguration.addAllowedMethod("GET");
