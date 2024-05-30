@@ -51,4 +51,27 @@ public class SecurityConfig {
         return builder.getAuthenticationManager();
     }
 
+    @Bean
+    public FilterRegistrationBean coresFilter()
+    {
+        UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration=new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.addAllowedOriginPattern("*");
+        corsConfiguration.addAllowedHeader("Authorization");
+        corsConfiguration.addAllowedHeader("Content-Type");
+        corsConfiguration.addAllowedHeader("Header");
+        corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.addAllowedMethod("GET");
+        corsConfiguration.addAllowedMethod("DELETE");
+        corsConfiguration.addAllowedMethod("PUT");
+        corsConfiguration.addAllowedMethod("OPTIONS");
+        corsConfiguration.setMaxAge(3600L);
+        source.registerCorsConfiguration("/**",corsConfiguration);
+        FilterRegistrationBean bean= new FilterRegistrationBean(new CorsFilter(source));
+
+        return bean;
+
+    }
+
 }
